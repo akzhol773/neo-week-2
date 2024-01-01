@@ -7,15 +7,13 @@ public class Event {
     private String eventID;
     private String name;
     private Date date;
-    private List<Author> participatingAuthors;
-    private List<Book> featuredBooks;
 
-    public Event(String eventID, String name, Date date, List<Author> participatingAuthors, List<Book> featuredBooks) {
+
+    public Event(String eventID, String name, Date date) {
         this.eventID = eventID;
         this.name = name;
         this.date = date;
-        this.participatingAuthors = participatingAuthors;
-        this.featuredBooks = featuredBooks;
+
     }
 
     public String getEventID() {
@@ -42,21 +40,7 @@ public class Event {
         this.date = date;
     }
 
-    public List<Author> getParticipatingAuthors() {
-        return participatingAuthors;
-    }
 
-    public void setParticipatingAuthors(List<Author> participatingAuthors) {
-        this.participatingAuthors = participatingAuthors;
-    }
-
-    public List<Book> getFeaturedBooks() {
-        return featuredBooks;
-    }
-
-    public void setFeaturedBooks(List<Book> featuredBooks) {
-        this.featuredBooks = featuredBooks;
-    }
 
     @Override
     public String toString() {
@@ -64,8 +48,6 @@ public class Event {
                 "eventID='" + eventID + '\'' +
                 ", name='" + name + '\'' +
                 ", date=" + date +
-                ", participatingAuthors=" + participatingAuthors +
-                ", featuredBooks=" + featuredBooks +
                 '}';
     }
 }

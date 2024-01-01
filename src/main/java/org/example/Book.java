@@ -4,28 +4,27 @@ import java.util.Date;
 import java.util.List;
 
 public class Book {
-    String bookID;
+    private String bookID;
     private String title;
-    private List<Author> authors;
+    private String author;
     private String isbn;
     private double price;
     private String genre;
     private String publisher;
     private Date publicationDate;
     private int stockQuantity;
-    private List<Review> reviews;
 
-    public Book(String bookID, String title, List<Author> authors, String isbn, double price, String genre, String publisher, Date publicationDate, int stockQuantity, List<Review> reviews) {
+    public Book(String bookID, String title, String author, String isbn, double price, String genre, String publisher, Date publicationDate, int stockQuantity) {
         this.bookID = bookID;
         this.title = title;
-        this.authors = authors;
+        this.author = author;
         this.isbn = isbn;
         this.price = price;
         this.genre = genre;
         this.publisher = publisher;
         this.publicationDate = publicationDate;
         this.stockQuantity = stockQuantity;
-        this.reviews = reviews;
+
     }
 
     public Book() {
@@ -47,12 +46,12 @@ public class Book {
         this.title = title;
     }
 
-    public List<Author> getAuthors() {
-        return authors;
+    public String getAuthors() {
+        return author;
     }
 
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
+    public void setAuthors(String author) {
+        this.author = author;
     }
 
     public String getIsbn() {
@@ -103,27 +102,19 @@ public class Book {
         this.stockQuantity = stockQuantity;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
 
     @Override
     public String toString() {
         return "Book{" +
                 "bookID='" + bookID + '\'' +
                 ", title='" + title + '\'' +
-                ", authors=" + authors +
+                ", author=" + author +
                 ", isbn='" + isbn + '\'' +
                 ", price=" + price +
                 ", genre='" + genre + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", publicationDate=" + publicationDate +
                 ", stockQuantity=" + stockQuantity +
-                ", reviews=" + reviews +
                 '}';
     }
 }

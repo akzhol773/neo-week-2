@@ -3,14 +3,24 @@ package org.example;
 public class Review {
     String reviewID;
     private int rating;
+    private Book book;
     private String comment;
     private Customer reviewer;
 
-    public Review(String reviewID, int rating, String comment, Customer reviewer) {
+    public Review(String reviewID, int rating, String comment, Customer reviewer, Book book) {
         this.reviewID = reviewID;
         this.rating = rating;
         this.comment = comment;
         this.reviewer = reviewer;
+        this.book = book;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public String getReviewID() {
@@ -50,6 +60,7 @@ public class Review {
         return "Review{" +
                 "reviewID='" + reviewID + '\'' +
                 ", rating=" + rating +
+                ", book=" + book +
                 ", comment='" + comment + '\'' +
                 ", reviewer=" + reviewer +
                 '}';
