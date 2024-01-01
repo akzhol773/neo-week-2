@@ -1,7 +1,57 @@
 package org.example;
 
 public class Review {
+    String reviewID;
     private int rating;
     private String comment;
     private Customer reviewer;
+
+    public Review(String reviewID, int rating, String comment, Customer reviewer) {
+        this.reviewID = reviewID;
+        this.rating = rating;
+        this.comment = comment;
+        this.reviewer = reviewer;
+    }
+
+    public String getReviewID() {
+        return reviewID;
+    }
+
+    public void setReviewID(String reviewID) {
+        this.reviewID = reviewID;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Customer getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(Customer reviewer) {
+        this.reviewer = reviewer;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewID='" + reviewID + '\'' +
+                ", rating=" + rating +
+                ", comment='" + comment + '\'' +
+                ", reviewer=" + reviewer +
+                '}';
+    }
 }
