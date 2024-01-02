@@ -1,12 +1,30 @@
 package org.example;
 
+/**
+ * Represents a review for a book.
+ * Contains information about the review ID, rating, associated book, reviewer's comment, and the reviewer.
+ */
 public class Review {
+    // Unique identifier for the review
     String reviewID;
+    // Numeric rating given in the review
     private int rating;
+    // The book that this review is associated with
     private Book book;
+    // Comment provided by the reviewer
     private String comment;
+    // The customer who wrote the review
     private Customer reviewer;
 
+    /**
+     * Constructs a new Review with specified details.
+     *
+     * @param reviewID  The unique identifier for the review
+     * @param rating    The rating given in the review
+     * @param comment   The comment provided by the reviewer
+     * @param reviewer  The customer who wrote the review
+     * @param book      The book that the review is associated with
+     */
     public Review(String reviewID, int rating, String comment, Customer reviewer, Book book) {
         this.reviewID = reviewID;
         this.rating = rating;
@@ -15,14 +33,7 @@ public class Review {
         this.book = book;
     }
 
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
+    // Getters and setters for each field
     public String getReviewID() {
         return reviewID;
     }
@@ -37,6 +48,14 @@ public class Review {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public String getComment() {
@@ -55,6 +74,12 @@ public class Review {
         this.reviewer = reviewer;
     }
 
+    /**
+     * Returns a string representation of the Review object.
+     * Includes details like review ID, rating, book details, comment, and reviewer details.
+     *
+     * @return A string representation of the Review object.
+     */
     @Override
     public String toString() {
         return "Review{" +
