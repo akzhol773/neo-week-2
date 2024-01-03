@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 /**
  * Represents a bookstore with basic information.
  * Stores details such as the bookstore ID, name, and address.
@@ -52,6 +54,8 @@ public class Bookstore {
         this.address = address;
     }
 
+
+
     /**
      * Returns a string representation of the Bookstore object.
      * Includes details like bookstore ID, name, and address.
@@ -65,5 +69,17 @@ public class Bookstore {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Bookstore bookstore)) return false;
+        return Objects.equals(getBookStoreID(), bookstore.getBookStoreID()) && Objects.equals(getName(), bookstore.getName()) && Objects.equals(getAddress(), bookstore.getAddress());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getBookStoreID(), getName(), getAddress());
     }
 }

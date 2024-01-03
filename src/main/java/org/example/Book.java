@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Represents a book in a library or bookstore system.
@@ -50,6 +51,7 @@ public class Book {
         this.publicationDate = publicationDate;
         this.stockQuantity = stockQuantity;
     }
+
 
     /**
      * Constructs a new Book with no details (default constructor).
@@ -151,5 +153,17 @@ public class Book {
                 ", publicationDate=" + publicationDate +
                 ", stockQuantity=" + stockQuantity +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book book)) return false;
+        return Double.compare(getPrice(), book.getPrice()) == 0 && getStockQuantity() == book.getStockQuantity() && Objects.equals(getBookID(), book.getBookID()) && Objects.equals(getTitle(), book.getTitle()) && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getIsbn(), book.getIsbn()) && Objects.equals(getGenre(), book.getGenre()) && Objects.equals(getPublisher(), book.getPublisher()) && Objects.equals(getPublicationDate(), book.getPublicationDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getBookID(), getTitle(), getAuthor(), getIsbn(), getPrice(), getGenre(), getPublisher(), getPublicationDate(), getStockQuantity());
     }
 }

@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Represents an event with a unique ID, name, and date.
@@ -28,6 +29,7 @@ public class Event {
     }
 
     // Getters and setters for each field
+
 
     public String getEventID() {
         return eventID;
@@ -68,4 +70,16 @@ public class Event {
                 ", date=" + date +
                 '}';
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Event event)) return false;
+        return Objects.equals(getEventID(), event.getEventID()) && Objects.equals(getName(), event.getName()) && Objects.equals(getDate(), event.getDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEventID(), getName(), getDate());
+    }
+
 }

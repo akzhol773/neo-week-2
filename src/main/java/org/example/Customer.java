@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents a customer, extending the Person class.
@@ -58,6 +59,19 @@ public class Customer extends Person {
                 "customerID='" + customerID + '\'' +
                 ", reviews=" + reviews +
                 "} " + super.toString(); // Includes the toString output from the Person class
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer customer)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(getCustomerID(), customer.getCustomerID()) && Objects.equals(getReviews(), customer.getReviews());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getCustomerID(), getReviews());
     }
 }
 

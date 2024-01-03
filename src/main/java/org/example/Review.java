@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 /**
  * Represents a review for a book.
  * Contains information about the review ID, rating, associated book, reviewer's comment, and the reviewer.
@@ -89,5 +91,17 @@ public class Review {
                 ", comment='" + comment + '\'' +
                 ", reviewer=" + reviewer +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Review review)) return false;
+        return getRating() == review.getRating() && Objects.equals(getReviewID(), review.getReviewID()) && Objects.equals(getBook(), review.getBook()) && Objects.equals(getComment(), review.getComment()) && Objects.equals(getReviewer(), review.getReviewer());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getReviewID(), getRating(), getBook(), getComment(), getReviewer());
     }
 }

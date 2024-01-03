@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 /**
  * Represents a person with basic contact information.
  * Stores personal details such as first name, last name, contact number, and email address.
@@ -85,5 +87,17 @@ public class Person {
                 ", contactNumber=" + contactNumber +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person person)) return false;
+        return getContactNumber() == person.getContactNumber() && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getEmail(), person.getEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFirstName(), getLastName(), getContactNumber(), getEmail());
     }
 }

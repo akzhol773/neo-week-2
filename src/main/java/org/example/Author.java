@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 /**
  * Represents an author, extending the Person class.
  * Stores additional author-specific information such as author ID and biography.
@@ -56,5 +58,18 @@ public class Author extends Person {
                 "authorID='" + authorID + '\'' +
                 ", biography='" + biography + '\'' +
                 "} " + super.toString(); // Includes the toString output from the Person class
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Author author)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(getAuthorID(), author.getAuthorID()) && Objects.equals(getBiography(), author.getBiography());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getAuthorID(), getBiography());
     }
 }
