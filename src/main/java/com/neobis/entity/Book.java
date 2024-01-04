@@ -1,4 +1,4 @@
-package org.example;
+package com.neobis.entity;
 
 import java.util.Date;
 import java.util.Objects;

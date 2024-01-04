@@ -1,4 +1,4 @@
-package org.example;
+package com.neobis.entity;
 
 public class Main
 {

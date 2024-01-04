@@ -1,4 +1,4 @@
-package org.example;
+package com.neobis.entity;
 
 import java.util.Objects;
 
@@ -16,7 +16,7 @@ public class Review {
     // Comment provided by the reviewer
     private String comment;
     // The customer who wrote the review
-    private Customer reviewer;
+
 
     /**
      * Constructs a new Review with specified details.
@@ -24,14 +24,12 @@ public class Review {
      * @param reviewID  The unique identifier for the review
      * @param rating    The rating given in the review
      * @param comment   The comment provided by the reviewer
-     * @param reviewer  The customer who wrote the review
      * @param book      The book that the review is associated with
      */
-    public Review(String reviewID, int rating, String comment, Customer reviewer, Book book) {
+    public Review(String reviewID, int rating, String comment, Book book) {
         this.reviewID = reviewID;
         this.rating = rating;
         this.comment = comment;
-        this.reviewer = reviewer;
         this.book = book;
     }
 
@@ -68,13 +66,6 @@ public class Review {
         this.comment = comment;
     }
 
-    public Customer getReviewer() {
-        return reviewer;
-    }
-
-    public void setReviewer(Customer reviewer) {
-        this.reviewer = reviewer;
-    }
 
     /**
      * Returns a string representation of the Review object.
@@ -89,7 +80,6 @@ public class Review {
                 ", rating=" + rating +
                 ", book=" + book +
                 ", comment='" + comment + '\'' +
-                ", reviewer=" + reviewer +
                 '}';
     }
 
@@ -97,11 +87,11 @@ public class Review {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Review review)) return false;
-        return getRating() == review.getRating() && Objects.equals(getReviewID(), review.getReviewID()) && Objects.equals(getBook(), review.getBook()) && Objects.equals(getComment(), review.getComment()) && Objects.equals(getReviewer(), review.getReviewer());
+        return getRating() == review.getRating() && Objects.equals(getReviewID(), review.getReviewID()) && Objects.equals(getBook(), review.getBook()) && Objects.equals(getComment(), review.getComment());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getReviewID(), getRating(), getBook(), getComment(), getReviewer());
+        return Objects.hash(getReviewID(), getRating(), getBook(), getComment());
     }
 }

@@ -1,4 +1,4 @@
-package org.example;
+package com.neobis.entity;
 
 /**
  * Represents an employee, extending the Person class.
