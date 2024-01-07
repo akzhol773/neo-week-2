@@ -1,0 +1,28 @@
+JDBC, Hibernate testing documentation
+
+Date: 01.07.2024
+
+1. Environment Setup
+   - JDBC Driver: MySQL
+   - Database: MySQL
+   - Hibernate dependency
+   - Tables: Author, Book, Review, Employee, Customer, Publisher.
+
+2. Implemented Methods
+   - Connect: Method to establish a database connection.
+   - Insert: Method to insert new records.
+   - Select: Method to retrieve records.
+   - Update: Method to update existing records.
+   - Delete: Method to delete records.
+
+3. Testing Process and Results
+   - Connection Test: Successfully connected to the database.
+   - Insert Test: Inserted a new record into Book table.
+   - Select Test: Retrieved records from Book table.
+   - Update Test: Updated a record in Book table.
+   - Delete Test: Deleted a record from Book table.
+
+4. Observations and Issues
+   - Encountered with issues when I worked with multiple tables.
+
+
