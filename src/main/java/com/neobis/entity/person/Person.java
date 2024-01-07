@@ -10,8 +10,10 @@ import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@DiscriminatorColumn(name = "type")
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     // First name of the person
     private String firstName;
     // Last name of the person
@@ -32,7 +34,8 @@ public class Person {
      * @param contactNumber The contact number of the person.
      * @param email The email address of the person.
      */
-    public Person(String firstName, String lastName, int contactNumber, String email) {
+    public Person(Long id, String firstName, String lastName, int contactNumber, String email) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.contactNumber = contactNumber;
@@ -49,6 +52,15 @@ public class Person {
 
 
     // Getter and Setter methods for each field
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -81,6 +93,7 @@ public class Person {
         this.email = email;
     }
 
+
     // Override methods from the Object class
 
     /**
@@ -94,10 +107,7 @@ public class Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Person person)) return false;
-        return getContactNumber() == person.getContactNumber() &&
-                Objects.equals(getFirstName(), person.getFirstName()) &&
-                Objects.equals(getLastName(), person.getLastName()) &&
-                Objects.equals(getEmail(), person.getEmail());
+        return getContactNumber() == person.getContactNumber() && Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getEmail(), person.getEmail());
     }
 
     /**
@@ -108,7 +118,7 @@ public class Person {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getFirstName(), getLastName(), getContactNumber(), getEmail());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getContactNumber(), getEmail());
     }
 
     /**
@@ -120,7 +130,8 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", contactNumber=" + contactNumber +
                 ", email='" + email + '\'' +

@@ -13,9 +13,9 @@ public class Publisher {
 
     // Fields of the Publisher class
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long publisherId;  // Unique identifier for the publisher
-    @Column(nullable = false, length = 200)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;  // Unique identifier for the publisher
+    @Column(length = 200)
     private String name;         // Name of the publisher
     @Column(length = 500)
     private String address;      // Address of the publisher
@@ -25,13 +25,13 @@ public class Publisher {
     /**
      * Constructor to initialize a Publisher object with all its attributes.
      *
-     * @param publisherId Unique identifier for the publisher.
+     * @param id Unique identifier for the publisher.
      * @param name Name of the publisher.
      * @param address Address of the publisher.
      * @param phoneNumber Phone number of the publisher.
      */
-    public Publisher(Long publisherId, String name, String address, int phoneNumber) {
-        this.publisherId = publisherId;
+    public Publisher(Long id, String name, String address, int phoneNumber) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -46,74 +46,34 @@ public class Publisher {
 
     // Getter and Setter methods for each field
 
-    /**
-     * Gets the publisher ID.
-     *
-     * @return The publisher ID.
-     */
-    public Long getPublisherId() {
-        return publisherId;
+    public Long getId() {
+        return id;
     }
 
-    /**
-     * Sets the publisher ID.
-     *
-     * @param publisherId The new publisher ID.
-     */
-    public void setPublisherId(Long publisherId) {
-        this.publisherId = publisherId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    /**
-     * Gets the name of the publisher.
-     *
-     * @return The name of the publisher.
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * Sets the name of the publisher.
-     *
-     * @param name The new name of the publisher.
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * Gets the address of the publisher.
-     *
-     * @return The address of the publisher.
-     */
     public String getAddress() {
         return address;
     }
 
-    /**
-     * Sets the address of the publisher.
-     *
-     * @param address The new address of the publisher.
-     */
     public void setAddress(String address) {
         this.address = address;
     }
 
-    /**
-     * Gets the phone number of the publisher.
-     *
-     * @return The phone number of the publisher.
-     */
     public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    /**
-     * Sets the phone number of the publisher.
-     *
-     * @param phoneNumber The new phone number of the publisher.
-     */
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -131,11 +91,10 @@ public class Publisher {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Publisher publisher)) return false;
-        return getPhoneNumber() == publisher.getPhoneNumber() &&
-                Objects.equals(getPublisherId(), publisher.getPublisherId()) &&
-                Objects.equals(getName(), publisher.getName()) &&
-                Objects.equals(getAddress(), publisher.getAddress());
+        return getPhoneNumber() == publisher.getPhoneNumber() && Objects.equals(getId(), publisher.getId()) && Objects.equals(getName(), publisher.getName()) && Objects.equals(getAddress(), publisher.getAddress());
     }
+
+
 
     /**
      * Generates a hash code for the Publisher.
@@ -145,7 +104,7 @@ public class Publisher {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getPublisherId(), getName(), getAddress(), getPhoneNumber());
+        return Objects.hash(getId(), getName(), getAddress(), getPhoneNumber());
     }
 
 
@@ -153,7 +112,7 @@ public class Publisher {
     @Override
     public String toString() {
         return "Publisher{" +
-                "publisherId='" + publisherId + '\'' +
+                "publisherId='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", phoneNumber=" + phoneNumber +

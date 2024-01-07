@@ -14,8 +14,8 @@ import java.util.Objects;
 public class Review {
     // Unique identifier for the review
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reviewID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     // Numeric rating given in the review
     private int rating;
     // The book that this review is associated with
@@ -32,21 +32,23 @@ public class Review {
     @JoinColumn(name = "customer_id")
     private Customer reviewer;
 
+
+
     /**
      * Constructor to initialize a Review object with all its attributes.
      *
-     * @param reviewID Unique identifier for the review.
+     * @param id Unique identifier for the review.
      * @param rating Numeric rating given in the review.
      * @param book The book that this review is associated with.
      * @param comment Comment provided by the reviewer.
-     * @param customer The customer who wrote the review.
+     * @param reviewer The customer who wrote the review.
      */
-    public Review(Long reviewID, int rating, Book book, String comment, Customer customer) {
-        this.reviewID = reviewID;
+    public Review(Long id, int rating, Book book, String comment, Customer reviewer) {
+        this.id = id;
         this.rating = rating;
         this.book = book;
         this.comment = comment;
-        this.reviewer = customer;
+        this.reviewer = reviewer;
     }
     public Review(){
 
@@ -54,12 +56,12 @@ public class Review {
 
     // Getter and Setter methods for each field
 
-    public Long getReviewID() {
-        return reviewID;
+    public Long getId() {
+        return id;
     }
 
-    public void setReviewID(Long reviewID) {
-        this.reviewID = reviewID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getRating() {
@@ -109,8 +111,10 @@ public class Review {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Review review)) return false;
-        return getRating() == review.getRating() && Objects.equals(getReviewID(), review.getReviewID()) && Objects.equals(getBook(), review.getBook()) && Objects.equals(getComment(), review.getComment()) && Objects.equals(getReviewer(), review.getReviewer());
+        return getRating() == review.getRating() && Objects.equals(getId(), review.getId()) && Objects.equals(getBook(), review.getBook()) && Objects.equals(getComment(), review.getComment()) && Objects.equals(getReviewer(), review.getReviewer());
     }
+
+
 
     /**
      * Generates a hash code for the Review.
@@ -118,18 +122,18 @@ public class Review {
      *
      * @return A hash code value for the Review.
      */
-
     @Override
     public int hashCode() {
-        return Objects.hash(getReviewID(), getRating(), getBook(), getComment(), getReviewer());
+        return Objects.hash(getId(), getRating(), getBook(), getComment(), getReviewer());
     }
+
 
     // toString method
 
     @Override
     public String toString() {
         return "Review{" +
-                "reviewID='" + reviewID + '\'' +
+                "reviewID='" + id + '\'' +
                 ", rating=" + rating +
                 ", book=" + book +
                 ", comment='" + comment + '\'' +

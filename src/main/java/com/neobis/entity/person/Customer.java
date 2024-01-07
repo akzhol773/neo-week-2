@@ -8,13 +8,8 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "customer")
-
 public class Customer extends Person {
 
-    // Unique identifier for the customer
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerId;
 
     /**
      * Constructor to initialize a Customer object with personal and customer-specific attributes.
@@ -24,12 +19,11 @@ public class Customer extends Person {
      * @param lastName The last name of the customer.
      * @param contactNumber The contact number of the customer.
      * @param email The email address of the customer.
-     * @param customerId The unique identifier for the customer.
+     * @param id The unique identifier for the customer.
      */
 
-    public Customer(String firstName, String lastName, int contactNumber, String email, Long customerId) {
-        super(firstName, lastName, contactNumber, email);
-        this.customerId = customerId;
+    public Customer(Long id, String firstName, String lastName, int contactNumber, String email) {
+        super(id, firstName, lastName, contactNumber, email);
     }
 
     /**
@@ -37,45 +31,6 @@ public class Customer extends Person {
      * Creates an empty Customer object. Useful when customer details are set using setters.
      */
     public Customer() {
-    }
-
-
-    // Getter and Setter methods for customerId
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
-
-
-
-    /**
-     * Determines if this Customer is equal to another object.
-     * Equality is based on both the inherited Person fields and the Customer-specific field (customerId).
-     *
-     * @param o The object to compare with this Customer.
-     * @return true if the objects are equal, false otherwise.
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customer customer)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(getCustomerId(), customer.getCustomerId());
-    }
-
-
-    /**
-     * Generates a hash code for the Customer.
-     * Includes hash codes from both the inherited Person fields and the Customer-specific field.
-     *
-     * @return A hash code value for the Customer.
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getCustomerId());
     }
 
     /**
@@ -88,7 +43,6 @@ public class Customer extends Person {
     @Override
     public String toString() {
         return "Customer{" +
-                "customerId='" + customerId + '\'' +
                 "} " + super.toString();
     }
 }

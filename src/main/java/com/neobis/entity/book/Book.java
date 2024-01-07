@@ -13,8 +13,8 @@ import java.util.Objects;
 public class Book {
     // Unique identifier for the book
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
 
     // Title of the book
@@ -22,7 +22,6 @@ public class Book {
     private String title;
 
     // International Standard Book Number
-    @Column(unique = true, nullable = false)
     private String ISBN;
 
 
@@ -59,10 +58,11 @@ public class Book {
     private Genre genre;
 
 
+
     /**
      * Constructor to initialize a Book object with all its attributes.
      *
-     * @param bookID The unique identifier for the book.
+     * @param id The unique identifier for the book.
      * @param title The title of the book.
      * @param author The author of the book.
      * @param ISBN The International Standard Book Number.
@@ -72,10 +72,8 @@ public class Book {
      * @param publicationDate The date of publication.
      * @param stockQuantity The stock quantity of the book.
      */
-
-
-    public Book(Long bookID, String title, String ISBN, Author author, double price, Date publicationDate, int stockQuantity, Publisher publisher, Genre genre) {
-        this.bookID = bookID;
+    public Book(Long id, String title, String ISBN, Author author, double price, Date publicationDate, int stockQuantity, Publisher publisher, Genre genre) {
+        this.id = id;
         this.title = title;
         this.ISBN = ISBN;
         this.author = author;
@@ -86,17 +84,21 @@ public class Book {
         this.genre = genre;
     }
 
+
+
+
     public Book() {
     }
 
     // Getter and setter methods for each field
 
-    public Long getBookID() {
-        return bookID;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setBookID(Long bookID) {
-        this.bookID = bookID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -163,24 +165,25 @@ public class Book {
         this.genre = genre;
     }
 
-
     // Other methods (toString, equals, hashCode) as previously defined
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Book book)) return false;
-        return Double.compare(getPrice(), book.getPrice()) == 0 && getStockQuantity() == book.getStockQuantity() && Objects.equals(getBookID(), book.getBookID()) && Objects.equals(getTitle(), book.getTitle()) && Objects.equals(getISBN(), book.getISBN()) && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getPublicationDate(), book.getPublicationDate()) && Objects.equals(getPublisher(), book.getPublisher()) && getGenre() == book.getGenre();
+        return Double.compare(getPrice(), book.getPrice()) == 0 && getStockQuantity() == book.getStockQuantity() && Objects.equals(getId(), book.getId()) && Objects.equals(getTitle(), book.getTitle()) && Objects.equals(getISBN(), book.getISBN()) && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getPublicationDate(), book.getPublicationDate()) && Objects.equals(getPublisher(), book.getPublisher()) && getGenre() == book.getGenre();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getBookID(), getTitle(), getISBN(), getAuthor(), getPrice(), getPublicationDate(), getStockQuantity(), getPublisher(), getGenre());
+        return Objects.hash(getId(), getTitle(), getISBN(), getAuthor(), getPrice(), getPublicationDate(), getStockQuantity(), getPublisher(), getGenre());
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "bookID='" + bookID + '\'' +
+                "bookID='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", ISBN='" + ISBN + '\'' +
                 ", author=" + author +

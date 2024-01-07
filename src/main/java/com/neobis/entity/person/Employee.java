@@ -12,13 +12,12 @@ import java.util.Objects;
 @Table(name = "employee")
 public class Employee extends Person {
 
-    // Employee ID
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long employeeId;
+
     // The role of the employee (e.g., Manager, Salesperson)
     @Column(length = 100)
     private String role;
+
+
 
 
 
@@ -31,14 +30,14 @@ public class Employee extends Person {
      * @param contactNumber The contact number of the employee.
      * @param email The email address of the employee.
      * @param role The role of the employee.
-     * @param employeeId The unique identifier for the employee.
+     * @param id The unique identifier for the employee.
      */
-
-    public Employee(String firstName, String lastName, int contactNumber, String email, String role, Long employeeId) {
-        super(firstName, lastName, contactNumber, email);
+    public Employee(Long id, String firstName, String lastName, int contactNumber, String email, String role) {
+        super(id, firstName, lastName, contactNumber, email);
         this.role = role;
-        this.employeeId = employeeId;
     }
+
+
 
   public Employee(){
 
@@ -54,13 +53,6 @@ public class Employee extends Person {
         this.role = role;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
-    }
 
     // Override methods from the Object class
 
@@ -75,9 +67,8 @@ public class Employee extends Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Employee employee)) return false;
-        if (!super.equals(o)) return false; // Check equality based on Person fields
-        return Objects.equals(getRole(), employee.getRole()) &&
-                Objects.equals(getEmployeeId(), employee.getEmployeeId());
+        if (!super.equals(o)) return false;
+        return Objects.equals(getRole(), employee.getRole());
     }
 
     /**
@@ -88,7 +79,7 @@ public class Employee extends Person {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getRole(), getEmployeeId());
+        return Objects.hash(super.hashCode(), getRole());
     }
 
     /**
@@ -101,7 +92,6 @@ public class Employee extends Person {
     public String toString() {
         return "Employee{" +
                 "role='" + role + '\'' +
-                ", employeeId='" + employeeId + '\'' +
                 "} " + super.toString(); // Includes Person details in the string representation
     }
 }

@@ -11,13 +11,8 @@ import java.util.Objects;
  */
 
 @Entity
-@DiscriminatorValue("Author") // Discriminator for SINGLE_TABLE inheritance
+@Table(name = "author")// Discriminator for SINGLE_TABLE inheritance
 public class Author extends Person {
-    // Unique identifier for the author
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long authorID;
-
     // Biography of the author
     @Column(length = 1000) // Optional: Customize the column definition
     private String biography;
@@ -26,13 +21,13 @@ public class Author extends Person {
      * Constructor to initialize an Author object with author ID and biography.
      * This constructor is used when all author details are known.
      *
-     * @param authorID The unique identifier for the author.
      * @param biography The biography of the author.
      */
-    public Author(Long authorID, String biography) {
-        this.authorID = authorID;
+    public Author(Long id, String firstName, String lastName, int contactNumber, String email, String biography) {
+        super(id, firstName, lastName, contactNumber, email);
         this.biography = biography;
     }
+
 
     /**
      * Default constructor.
@@ -43,23 +38,6 @@ public class Author extends Person {
 
     // Getter and Setter methods
 
-    /**
-     * Gets the author ID.
-     *
-     * @return The author ID.
-     */
-    public Long getAuthorID() {
-        return authorID;
-    }
-
-    /**
-     * Sets the author ID.
-     *
-     * @param authorID The new author ID.
-     */
-    public void setAuthorID(Long authorID) {
-        this.authorID = authorID;
-    }
 
     /**
      * Gets the biography of the author.
@@ -92,8 +70,13 @@ public class Author extends Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Author author)) return false;
-        return Objects.equals(getAuthorID(), author.getAuthorID()) &&
-                Objects.equals(getBiography(), author.getBiography());
+        if (!super.equals(o)) return false;
+        return Objects.equals(getBiography(), author.getBiography());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getBiography());
     }
 
     /**
@@ -102,17 +85,13 @@ public class Author extends Person {
      *
      * @return A hash code value for the Author.
      */
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAuthorID(), getBiography());
-    }
+
 
 
     // toString method
     @Override
     public String toString() {
         return "Author{" +
-                "authorID='" + authorID + '\'' +
                 ", biography='" + biography + '\'' +
                 "} " + super.toString();
     }
