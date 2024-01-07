@@ -139,5 +139,17 @@ public class Publisher {
     public int hashCode() {
         return Objects.hash(getPublisherId(), getName(), getAddress(), getPhoneNumber());
     }
+
+
+    //toString method
+    @Override
+    public String toString() {
+        return "Publisher{" +
+                "publisherId='" + publisherId + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                '}';
+    }
 }
 

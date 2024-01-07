@@ -99,5 +99,15 @@ public class Author extends Person {
     public int hashCode() {
         return Objects.hash(getAuthorID(), getBiography());
     }
+
+
+    // toString method
+    @Override
+    public String toString() {
+        return "Author{" +
+                "authorID='" + authorID + '\'' +
+                ", biography='" + biography + '\'' +
+                "} " + super.toString();
+    }
 }
 
