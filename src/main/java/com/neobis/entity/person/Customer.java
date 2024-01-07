@@ -1,15 +1,20 @@
 package com.neobis.entity.person;
 
+import javax.persistence.*;
 import java.util.Objects;
 /**
  * Represents a customer, extending the Person class.
  * This class adds a unique customer ID to the basic personal information inherited from Person.
  */
+@Entity
+@Table(name = "customer")
 
 public class Customer extends Person {
 
     // Unique identifier for the customer
-    private String customerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long customerId;
 
     /**
      * Constructor to initialize a Customer object with personal and customer-specific attributes.
@@ -22,7 +27,7 @@ public class Customer extends Person {
      * @param customerId The unique identifier for the customer.
      */
 
-    public Customer(String firstName, String lastName, int contactNumber, String email, String customerId) {
+    public Customer(String firstName, String lastName, int contactNumber, String email, Long customerId) {
         super(firstName, lastName, contactNumber, email);
         this.customerId = customerId;
     }
@@ -36,11 +41,11 @@ public class Customer extends Person {
 
 
     // Getter and Setter methods for customerId
-    public String getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 

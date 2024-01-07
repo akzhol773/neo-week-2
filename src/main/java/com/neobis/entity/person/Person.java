@@ -1,11 +1,16 @@
 package com.neobis.entity.person;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
  * Represents a person with basic contact information.
  * Stores personal details such as first name, last name, contact number, and email address.
  */
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@DiscriminatorColumn(name = "type")
 public class Person {
     // First name of the person
     private String firstName;

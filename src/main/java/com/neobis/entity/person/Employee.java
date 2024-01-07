@@ -1,18 +1,26 @@
 package com.neobis.entity.person;
 
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
  * Represents an employee, extending the Person class.
  * Contains employee-specific information such as their role, the bookstore branch they work at, and their employee ID.
  */
+@Entity
+@Table(name = "employee")
 public class Employee extends Person {
-    // The role of the employee (e.g., Manager, Salesperson)
-    private String role;
 
     // Employee ID
-    private String employeeId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long employeeId;
+    // The role of the employee (e.g., Manager, Salesperson)
+    @Column(length = 100)
+    private String role;
+
+
 
     /**
      * Constructor to initialize an Employee object with personal and employee-specific attributes.
@@ -26,7 +34,7 @@ public class Employee extends Person {
      * @param employeeId The unique identifier for the employee.
      */
 
-    public Employee(String firstName, String lastName, int contactNumber, String email, String role, String employeeId) {
+    public Employee(String firstName, String lastName, int contactNumber, String email, String role, Long employeeId) {
         super(firstName, lastName, contactNumber, email);
         this.role = role;
         this.employeeId = employeeId;
@@ -46,11 +54,11 @@ public class Employee extends Person {
         this.role = role;
     }
 
-    public String getEmployeeId() {
+    public Long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(String employeeId) {
+    public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 

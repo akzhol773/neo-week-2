@@ -2,23 +2,34 @@ package com.neobis.entity.book;
 
 
 import com.neobis.entity.person.Customer;
+
+import javax.persistence.*;
 import java.util.Objects;
 /**
  * Represents a review for a book.
  * Contains information about the review ID, rating, associated book, reviewer's comment, and the reviewer.
  */
+@Entity
+@Table(name = "review")
 public class Review {
     // Unique identifier for the review
-    String reviewID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long reviewID;
     // Numeric rating given in the review
     private int rating;
     // The book that this review is associated with
+    @ManyToOne
+    @JoinColumn(name = "book_id")
     private Book book;
     // Comment provided by the reviewer
+    @Column(length = 1000)
     private String comment;
     // The customer who wrote the review
 
     //Customer who gives review
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer reviewer;
 
     /**
@@ -30,7 +41,7 @@ public class Review {
      * @param comment Comment provided by the reviewer.
      * @param customer The customer who wrote the review.
      */
-    public Review(String reviewID, int rating, Book book, String comment, Customer customer) {
+    public Review(Long reviewID, int rating, Book book, String comment, Customer customer) {
         this.reviewID = reviewID;
         this.rating = rating;
         this.book = book;
@@ -43,11 +54,11 @@ public class Review {
 
     // Getter and Setter methods for each field
 
-    public String getReviewID() {
+    public Long getReviewID() {
         return reviewID;
     }
 
-    public void setReviewID(String reviewID) {
+    public void setReviewID(Long reviewID) {
         this.reviewID = reviewID;
     }
 

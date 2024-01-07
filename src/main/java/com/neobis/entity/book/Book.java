@@ -1,4 +1,5 @@
 package com.neobis.entity.book;
+import javax.persistence.*;
 
 import java.util.Date;
 import java.util.Objects;
@@ -7,19 +8,27 @@ import java.util.Objects;
  * Represents a book in a library or bookstore system.
  * Contains information about the book's ID, title, author, ISBN, price, genre, publisher, publication date, and stock quantity.
  */
+@Entity
+@Table(name = "book")
 public class Book {
     // Unique identifier for the book
-    private String bookID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long bookID;
 
 
     // Title of the book
+    @Column(nullable = false, length = 100)
     private String title;
 
     // International Standard Book Number
+    @Column(unique = true, nullable = false)
     private String ISBN;
 
 
     // Author of the book
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     private Author author;
 
 
@@ -30,6 +39,7 @@ public class Book {
 
 
     // Date when the book was published
+    @Temporal(TemporalType.DATE)
     private Date publicationDate;
 
 
@@ -39,13 +49,14 @@ public class Book {
 
 
     //Publisher
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
 
     // Gerne of the book
+    @Enumerated(EnumType.STRING)
     private Genre genre;
-
-
 
 
     /**
@@ -63,7 +74,7 @@ public class Book {
      */
 
 
-    public Book(String bookID, String title, String ISBN, Author author, double price, Date publicationDate, int stockQuantity, Publisher publisher, Genre genre) {
+    public Book(Long bookID, String title, String ISBN, Author author, double price, Date publicationDate, int stockQuantity, Publisher publisher, Genre genre) {
         this.bookID = bookID;
         this.title = title;
         this.ISBN = ISBN;
@@ -80,11 +91,11 @@ public class Book {
 
     // Getter and setter methods for each field
 
-    public String getBookID() {
+    public Long getBookID() {
         return bookID;
     }
 
-    public void setBookID(String bookID) {
+    public void setBookID(Long bookID) {
         this.bookID = bookID;
     }
 

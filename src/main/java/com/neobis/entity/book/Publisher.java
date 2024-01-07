@@ -1,17 +1,25 @@
 package com.neobis.entity.book;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
  * Represents a publisher of books.
  * This class contains information about the publisher such as their ID, name, address, and phone number.
  */
+@Entity
+@Table(name = "publisher")
 public class Publisher {
 
     // Fields of the Publisher class
-    private String publisherId;  // Unique identifier for the publisher
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long publisherId;  // Unique identifier for the publisher
+    @Column(nullable = false, length = 200)
     private String name;         // Name of the publisher
+    @Column(length = 500)
     private String address;      // Address of the publisher
+    @Column(name = "phone_number")
     private int phoneNumber;     // Phone number of the publisher
 
     /**
@@ -22,7 +30,7 @@ public class Publisher {
      * @param address Address of the publisher.
      * @param phoneNumber Phone number of the publisher.
      */
-    public Publisher(String publisherId, String name, String address, int phoneNumber) {
+    public Publisher(Long publisherId, String name, String address, int phoneNumber) {
         this.publisherId = publisherId;
         this.name = name;
         this.address = address;
@@ -43,7 +51,7 @@ public class Publisher {
      *
      * @return The publisher ID.
      */
-    public String getPublisherId() {
+    public Long getPublisherId() {
         return publisherId;
     }
 
@@ -52,7 +60,7 @@ public class Publisher {
      *
      * @param publisherId The new publisher ID.
      */
-    public void setPublisherId(String publisherId) {
+    public void setPublisherId(Long publisherId) {
         this.publisherId = publisherId;
     }
 

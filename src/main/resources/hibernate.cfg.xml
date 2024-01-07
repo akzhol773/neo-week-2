@@ -9,10 +9,21 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">pass1234!</property>
         <property name="hibernate.connection.characterEncoding">utf8</property>
-        <property name="show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <property name="default_schema">test</property>
         <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- Add your entity classes here -->
+        <mapping class="com.neobis.entity.book.Author"/>
+        <mapping class="com.neobis.entity.book.Book"/>
+        <mapping class="com.neobis.entity.book.Publisher"/>
+        <mapping class="com.neobis.entity.book.Review"/>
+        <mapping class="com.neobis.entity.person.Customer"/>
+        <mapping class="com.neobis.entity.person.Employee"/>
+
 
         <!-- Other properties -->
     </session-factory>

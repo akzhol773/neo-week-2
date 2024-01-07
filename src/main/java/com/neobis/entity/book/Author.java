@@ -1,4 +1,5 @@
 package com.neobis.entity.book;
+import javax.persistence.*;
 
 import com.neobis.entity.person.Person;
 
@@ -8,11 +9,17 @@ import java.util.Objects;
  * Represents an author, extending the Person class.
  * This class stores additional author-specific information such as author ID and biography.
  */
+
+@Entity
+@DiscriminatorValue("Author") // Discriminator for SINGLE_TABLE inheritance
 public class Author extends Person {
     // Unique identifier for the author
-    private String authorID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long authorID;
 
     // Biography of the author
+    @Column(length = 1000) // Optional: Customize the column definition
     private String biography;
 
     /**
@@ -22,7 +29,7 @@ public class Author extends Person {
      * @param authorID The unique identifier for the author.
      * @param biography The biography of the author.
      */
-    public Author(String authorID, String biography) {
+    public Author(Long authorID, String biography) {
         this.authorID = authorID;
         this.biography = biography;
     }
@@ -41,7 +48,7 @@ public class Author extends Person {
      *
      * @return The author ID.
      */
-    public String getAuthorID() {
+    public Long getAuthorID() {
         return authorID;
     }
 
@@ -50,7 +57,7 @@ public class Author extends Person {
      *
      * @param authorID The new author ID.
      */
-    public void setAuthorID(String authorID) {
+    public void setAuthorID(Long authorID) {
         this.authorID = authorID;
     }
 
