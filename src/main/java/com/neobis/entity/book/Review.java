@@ -22,7 +22,4 @@ public class Review {
     private Customer customer;
 
 
-
-
-
 }
